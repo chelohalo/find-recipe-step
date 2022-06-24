@@ -6,26 +6,32 @@ var recipes = require("../recipes.json");
 router.get("/recipes/step/:id", function (req, res, next) {
   const queries = req.query;
   const parameters = req.params;
-  console.log("querys", queries);
-  console.log("parameters", parameters);
 
-  //  console.log(recipes)
-  console.log(recipes[parameters[0]]);
-  console.log(parameters[0]);
+  console.log("parameters.id", parameters.id)
+if(isNaN(parameters.id)) {
+  res.status(400).send('NOT_FOUND');
+  return
+}
+if(parameters.id < 1) {
+  res.status(400).json("parameter ID cannot be less than 1.");
+  return
+}
   const id = parseInt(parameters.id);
-  console.log("id", typeof id);
+
   const minutes = parseInt(queries.elapsedTime);
-  console.log("minutes", typeof minutes);
+  // console.log("minutes", typeof minutes);
 
-  if (id === "string") {
-    res.status(400).json("NOT_FOUND");
-  }
+  // if (typeof id === "string") {
+  //   res.status(400).json("NOT_FOUND");
+  //   return
+  // }
 
 
-  else if (minutes === 0 ) {
+  if (minutes === 0 ) {
     res.status(200).json({ index: 0 });
 
-  } else if (typeof id === "number")
+  } 
+   if (typeof id === "number")
    {
     const timers = recipes[id - 1].timers;
     console.log("timers", timers);

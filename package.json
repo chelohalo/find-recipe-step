@@ -4,8 +4,6 @@
   "private": true,
   "scripts": {
     "start": "nodemon bin/www",
-   
-   
     "test": "cross-env PORT=8001 ./node_modules/.bin/mocha test"
   },
   "dependencies": {
